@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -11,36 +9,78 @@ class ImageOptimizerService
 {
     public static function optimizeAndConvertToWebp(string $sourcePath, string $directory = 'products'): string
     {
-        $manager = new ImageManager(new Driver());
-
         $fullPath = Storage::disk('public')->path($sourcePath);
 
         if (!file_exists($fullPath)) {
             return $sourcePath;
         }
 
-        $image = $manager->read($fullPath);
-
-        // Resize maximum dimension to 1200px maintaining aspect ratio
-        if ($image->width() > 1200 || $image->height() > 1200) {
-            $image->scale(width: 1200);
+        $imageInfo = @getimagesize($fullPath);
+        if (!$imageInfo) {
+            return $sourcePath;
         }
 
-        // Encode to WebP with 80% quality
-        $encoded = $image->toWebp(80);
+        $mime = $imageInfo['mime'];
+        $width = $imageInfo[0];
+        $height = $imageInfo[1];
 
-        // Generate webp filename
+        switch ($mime) {
+            case 'image/jpeg':
+                $srcImage = @imagecreatefromjpeg($fullPath);
+                break;
+            case 'image/png':
+                $srcImage = @imagecreatefrompng($fullPath);
+                break;
+            case 'image/webp':
+                $srcImage = @imagecreatefromwebp($fullPath);
+                break;
+            default:
+                $srcImage = null;
+                break;
+        }
+
+        if (!$srcImage) {
+            return $sourcePath;
+        }
+
+        // Calculate 1200px max width/height preserving aspect ratio
+        $maxDimension = 1200;
+        if ($width > $maxDimension || $height > $maxDimension) {
+            if ($width >= $height) {
+                $newWidth = $maxDimension;
+                $newHeight = (int) round(($height / $width) * $maxDimension);
+            } else {
+                $newHeight = $maxDimension;
+                $newWidth = (int) round(($width / $height) * $maxDimension);
+            }
+        } else {
+            $newWidth = $width;
+            $newHeight = $height;
+        }
+
+        $dstImage = imagecreatetruecolor($newWidth, $newHeight);
+
+        // Preserve transparency
+        if ($mime === 'image/png' || $mime === 'image/webp') {
+            imagealphablending($dstImage, false);
+            imagesavealpha($dstImage, true);
+        }
+
+        imagecopyresampled($dstImage, $srcImage, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+        // Save as WebP with 80% compression quality
         $filename = pathinfo($sourcePath, PATHINFO_FILENAME) . '_' . Str::random(5) . '.webp';
         $relativeWebpPath = $directory . '/' . $filename;
         $destinationPath = Storage::disk('public')->path($relativeWebpPath);
 
-        // Ensure storage directory exists
         Storage::disk('public')->makeDirectory($directory);
 
-        // Save optimized webp image
-        $encoded->save($destinationPath);
+        imagewebp($dstImage, $destinationPath, 80);
 
-        // Remove original file if different
+        imagedestroy($srcImage);
+        imagedestroy($dstImage);
+
+        // Remove temp source file if different
         if ($fullPath !== $destinationPath && file_exists($fullPath)) {
             @unlink($fullPath);
         }

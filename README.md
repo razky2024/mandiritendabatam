@@ -1,58 +1,122 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ⛺ Mandiri Tenda Batam (CV. Mandiri Tenda Project)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> **Web Promotion & Order Management Platform** untuk persewaan tenda pernikahan, tenda roder VIP, tenda sarnafil kerucut, panggung rigid, sound system, & AC standing di Kota Batam.
 
-## About Laravel
+![Option 1 Theme: Royal Joy & Celebration](https://img.shields.io/badge/Theme-Royal%20Joy%20%26%20Celebration-amber)
+![Laravel Version](https://img.shields.io/badge/Laravel-13.x-red)
+![PHP Version](https://img.shields.io/badge/PHP-8.3%2F8.4-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-v4-06b6d4)
+![FilamentPHP](https://img.shields.io/badge/FilamentPHP-v3-orange)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🌟 Fitur Utama & Keunggulan Aplikasi
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **Desain Tema "Royal Joy & Celebration" (Option 1)**:
+   - Aksesibilitas kontras tinggi dengan warna dasar **Warm Light Cream (`#FAFAF9`)** dan teks **Slate 900 (`#0F172A`)**.
+   - **Primary Accent Warm Gold / Amber (`#F59E0B` / `#D97706`)** untuk tag harga, badge *★ Featured*, dan highlight paket mewah.
+   - **Main Action CTA Emerald Green (`#059669` / `#047857`)** untuk tombol pemesanan WhatsApp direct & kalkulator estimasi.
+2. **Katalog Produk Dinamis dengan Filter Alpine.js**:
+   - Filter tanpa reload halaman (*Zero-page-refresh*) untuk kategori Tenda Pernikahan, Tenda Roder, Sarnafil, dan Panggung/Sound.
+   - Tampilan harga **Fix Price** & **Custom Quote** dinamis.
+   - Modal Lightbox detail kelengkapan paket.
+3. **Kalkulator Estimasi Biaya Event Instan**:
+   - Slider kapasitas tamu (50 - 1.000 Tamu).
+   - Selector jenis event (Resepsi Pernikahan, Corporate/Peresmian, Bazar/Pameran).
+   - Checkbox opsi add-on (Standing AC 5 PK, Panggung VIP, Flooring Papan + Karpet, Sound System).
+   - Perhitungan total instan dalam Rupiah (IDR) dengan CTA langsung kirim rincian estimasi ke WhatsApp.
+4. **Optimasi Foto Produk Otomatis (WebP 1200px)**:
+   - Server-side processing `ImageOptimizerService` yang mengompresi foto produk ke WebP (maksimal 1200px, kualitas 80%).
+5. **Backoffice Admin Panel (FilamentPHP v3)**:
+   - Pengelolaan CRUD Kategori & Produk secara instan.
+   - Fitur upload multi-gambar dengan thumbnail & drag-and-drop.
+   - Logging otomatis riwayat interaksi WhatsApp & penggunaan kalkulator estimasi (`InquiryLogs`).
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ⚙️ Spesifikasi Teknologi (Tech Stack)
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* **Core Backend Framework:** PHP Laravel 13
+* **Database Management:** MySQL 8.0 / MariaDB
+* **Frontend UI Engine:** Laravel Blade + Tailwind CSS v4 + Alpine.js v3
+* **Admin Panel Backoffice:** FilamentPHP v3
+* **Image Processing Engine:** Intervention Image + GD WebP Extension
+* **Structured Data & SEO:** Schema.org `LocalBusiness` JSON-LD & OpenGraph Meta Tags
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## 🚀 Panduan Instalasi & Penggunaan Lokal
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 1. Prasyarat Sistem
+* PHP `>= 8.3` (Extension `gd`, `pdo`, `mbstring`, `openssl`, `curl` diaktifkan)
+* Composer v2
+* Node.js `>= 18` & npm
+* MySQL / MariaDB (Laragon / XAMPP)
+
+### 2. Langkah Kloning & Setup Repository
 
 ```bash
-composer require laravel/boost --dev
+# Clone repository
+git clone https://github.com/razky2024/mandiritendabatam.git
+cd mandiritendabatam
 
-php artisan boost:install
+# Install dependensi PHP & Node.js
+composer install
+npm install
+
+# Copy environment file & generate App Key
+cp .env.example .env
+php artisan key:generate
+
+# Konfigurasi Database di .env
+# DB_DATABASE=mandiritendabatam
+# DB_USERNAME=root
+# DB_PASSWORD=
+
+# Jalankan Migrasi Database & Seeder
+php artisan migrate:fresh --seed
+
+# Buat symbolic link storage
+php artisan storage:link
+
+# Publikasi Aset Filament Admin
+php artisan filament:assets
+
+# Build Aset Frontend Vite
+npm run build
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 3. Menjalankan Server Lokal
 
-## Contributing
+```bash
+# Jalankan server Laravel Development
+php artisan serve
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Buka browser dan akses:
+* **Halaman Publik**: `http://127.0.0.1:8000`
+* **Panel Admin**: `http://127.0.0.1:8000/admin/login`
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🔑 Kredensial Login Admin Panel
 
-## Security Vulnerabilities
+| Parameter | Nilai / Credential |
+|---|---|
+| **URL Login** | [http://127.0.0.1:8000/admin/login](http://127.0.0.1:8000/admin/login) |
+| **Email / Username** | `admin@mandiritendabatam.com` atau `admin` |
+| **Password** | `admin` |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 📍 Informasi Usaha & Kontak Resmi
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* **Nama Perusahaan:** CV. Mandiri Tenda Project
+* **Alamat Kantor / Gudang:** Kios Puri Brata No. 11-12, Kavling Lama / Perumahan Buana Indah 1, Blok C3 No. 1, Batam, Kepulauan Riau 29432.
+* **Google Maps Location:** [https://maps.app.goo.gl/Z1RxTpPtZ14hGZZo7](https://maps.app.goo.gl/Z1RxTpPtZ14hGZZo7)
+* **Jam Operasional:** Senin - Minggu: 08.00 - 20.00 WIB (Layanan Darurat Event 24 Jam)
+
+---
+
+## 📄 Lisensi
+Sistem ini dikembangkan secara profesional untuk CV. Mandiri Tenda Project Batam. All Rights Reserved.

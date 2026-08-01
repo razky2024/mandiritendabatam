@@ -1,0 +1,17 @@
+{
+  "GITEA_HOST": {
+    "required": true,
+    "secret": false,
+    "description": "Base URL of self-hosted Gitea instance (e.g. http://localhost:3000)."
+  },
+  "GITEA_TOKEN": {
+    "required": true,
+    "secret": true,
+    "description": "Gitea Access Token for MCP operations (mapped to GITEA_ACCESS_TOKEN)."
+  },
+  "GITHUB_PAT": {
+    "required": true,
+    "secret": true,
+    "description": "Personal Access Token for GitHub MCP operations."
+  }
+}

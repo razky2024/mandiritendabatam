@@ -112,20 +112,28 @@ Mandiri Tenda Batam is a professional tent and event equipment rental service op
 
 ### 4.1 Frontend / Public Experience
 
+#### Requirement 4.1.0: Frontend UI Theme & Aesthetic Standards ("Royal Joy & Celebration")
+* **Design Concept:** Option 1: "Royal Joy & Celebration" - A warm, high-contrast, luxury wedding and event aesthetic.
+* **Color Palette & Tokens:**
+  * **Primary Brand Accent (Warm Gold / Amber):** `#F59E0B` (`amber-500`) / `#D97706` (`amber-600`) - Used for luxury package highlights, price tags, badges, and active tab indicators.
+  * **Main Action CTA (Emerald Green):** `#059669` (`emerald-600`) / `#047857` (`emerald-700`) - Used exclusively for WhatsApp buttons, booking actions, and high-conversion CTAs representing prosperity and fresh beginnings.
+  * **Background Surface (Warm Off-White / Cream):** `#FAFAF9` (`stone-50`) / `#FEFCE8` (`yellow-50`) - Light, warm cream backdrop for an airy, elegant, and welcoming presentation.
+  * **Typography & Body Text (Slate 900):** `#0F172A` (`slate-900`) / `#1E293B` (`slate-800`) - High-contrast charcoal text for optimal readability across mobile and desktop.
+
 #### Requirement 4.1.1: Navigation & Hero Showcase
 * **User Story:** As a prospective customer, I want to quickly understand what Mandiri Tenda Batam offers and how to contact them immediately.
 * **Specifications:**
-  * Sticky header with glassmorphism backdrop (`backdrop-blur-md`).
-  * Hero section with strong value proposition targeting Batam events.
-  * Direct CTAs: "Lihat Katalog" and "Hitung Estimasi Biaya".
-  * Floating WhatsApp button accessible across mobile viewports.
+  * Sticky header with glassmorphism backdrop on light cream surface (`backdrop-blur-md bg-white/80 border-stone-200`).
+  * Hero section with strong value proposition targeting Batam events on warm cream background (`bg-stone-50`).
+  * Direct CTAs: "Lihat Katalog" (Warm Gold/Amber button) and "Hitung Estimasi Biaya" (Glass border button).
+  * Floating WhatsApp button (Emerald Green `#059669` with ripple animation) accessible across all viewports.
 
 #### Requirement 4.1.2: Dynamic Catalog & Multi-Price Display
 * **User Story:** As a customer, I want to filter products by event type and clearly see fixed package costs or request custom quotes.
 * **Specifications:**
   * Tab-based category filter powered by Alpine.js without page reloads.
-  * **Fix Price Display:** Show exact currency amount (e.g., "Rp 18.500.000") with "Pesan via WA" button.
-  * **Custom Price Display:** Show badge "Custom Quote / Hubungi WA" with dynamic event modal.
+  * **Fix Price Display:** Show exact currency amount in Warm Gold (`#D97706`) (e.g., "Rp 18.500.000") with Emerald Green "Pesan via WA" button.
+  * **Custom Price Display:** Show badge "Custom Quote / Hubungi WA" in Amber/Gold tint with dynamic event modal.
   * Modal Lightbox for viewing full package specifications and high-res image previews.
 
 #### Requirement 4.1.3: Interactive Event Cost Estimator
@@ -135,7 +143,7 @@ Mandiri Tenda Batam is a professional tent and event equipment rental service op
   * Event type selector (Wedding, Corporate/Groundbreaking, Bazaar).
   * Add-on toggles (e.g., Standing AC / Cooling units).
   * Live calculated output formatted in IDR (`Rp X.XXX.XXX`).
-  * Instant CTA to send pre-filled payload directly to WhatsApp.
+  * Instant Emerald Green CTA to send pre-filled payload directly to WhatsApp.
 
 #### Requirement 4.1.4: Direct WhatsApp Pre-filled Routing
 * **User Story:** As a customer clicking a CTA, I want my WhatsApp message pre-filled with the exact package or estimation details.
